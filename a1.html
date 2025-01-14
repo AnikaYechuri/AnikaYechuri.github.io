@@ -1,18 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
-
-    <title>Example Student's HCDE 439 Physical Computing Page!</title>
-
+    <title>Blink Assignment - HCDE 439</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>Example Student's Assignment 1!</h1>
-    <div class="header">
-      <img src="red-panda.jpg" />
-      <p>Here is all the documentation for assignment 1!</p>
-    </div>
+    <header>
+      <h1>Assignment 1- Blink </h1>
+      <p>Welcome to my documentation for the Blink assignment!</p>
+    </header>
+
+    <main>
+      <!-- Section: Circuit GIF -->
+      <section id="circuit-demo">
+        <h2>Circuit Demonstration</h2>
+        <img src="ezgif.com-video-to-gif-converter.gif" alt="GIF showing the Blink circuit in action" />
+        <p>A demonstration of the Blink circuit in action.</p>
+      </section>
+
+      <!-- Section: Circuit Diagram with Captions -->
+      <section id="circuit-diagram">
+        <h2>Circuit Diagram</h2>
+        <img src="IMG_0204.jpg" alt="Picture of the Blink circuit with labeled parts" />
+        <p>Caption: A labeled diagram of the circuit components used in the Blink project.</p>
+      </section>
+
+      <!-- Section: Calculations -->
+      <section id="calculations">
+        <h2>Resistor Calculations</h2>
+        <img src="calculating resistance.jpg" alt="Picture of resistor calculations" />
+        <p>Caption: Calculations to determine the appropriate resistor values for the LEDs.</p>
+      </section>
+
+      <!-- Section: Code Snippet -->
+      <section id="code-snippet">
+        <h2>Firmware Code</h2>
+        <pre><code>
+          // the setup function runs once when you press reset or power the board
+          //connecting the first red light to pin 2
+          const int red1 = 2; 
+          //connecting the first red light to pin 3
+          const int red2 = 3; 
+          //connecting the first red light to pin 4
+          const int red3 = 4; 
+          void setup() {
+            // initialize digital pin red1 as an output.
+            pinMode(red1, OUTPUT); 
+            // initialize digital pin red2 as an output.
+            pinMode(red2, OUTPUT); 
+            // initialize digital pin red3 as an output.
+            pinMode(red3, OUTPUT); 
+          }
+          
+          // the loop function runs over and over again forever
+          void loop() {
+            // turn the LED on (HIGH is the voltage level)
+            digitalWrite(red1, HIGH);  
+             // wait 
+            delay(200);    
+            // turn the LED off by making the voltage LOW                 
+            digitalWrite(red1, LOW);   
+            //wait
+            delay(30);          
+            
+            // turn the LED on (HIGH is the voltage level)
+            digitalWrite(red2, HIGH);  
+            // wait 
+            delay(500);        
+            // turn the LED off by making the voltage LOW              
+            digitalWrite(red2, LOW);
+            //wait   
+            delay(50);                      
+            
+            // turn the LED on (HIGH is the voltage level)
+            digitalWrite(red3, HIGH);  
+             // wait
+            delay(700);       
+            // turn the LED off by making the voltage LOW              
+            digitalWrite(red3, LOW);  
+            // wait  
+            delay(100);               
+          }
+          
+        </code></pre>
+      </section>
+
+      <!-- Section: Questions -->
+      <section id="questions">
+        <h2>Assignment Questions</h2>
+
+        <!-- Question 1 -->
+        <article id="question-1">
+          <h3>1. Draw a graph where the X axis is time and the Y axis is voltage across the LEDs. Draw a line for each of your 3 LEDs.</h3>
+          <img src="graph for blink.jpg" alt="Answer to Question 1 - Resistor purpose" />
+          <p>Caption: based on the frequency of the blinking, the graph shows either high voltage or 0 voltage.</p>
+        </article>
+
+        <!-- Question 2 -->
+        <article id="question-2">
+          <h3>2. How many LEDs could you blink independently with your Arduino? How much current would that draw?</h3>
+          <img src="question2-answer.jpg" alt="Answer to Question 2 - Resistor calculation process" />
+          <p>Caption: Steps taken to calculate the total current with 14 red bulbs.</p>
+        </article>
+
+        <!-- Question 3 -->
+        <article id="question-3">
+          <h3>3. 4: How fast do you need to blink your LEDs until you no longer can tell that they are blinking?</h3>
+          <p>When I tried turning it to high voltage for 5 ms and low voltage for 5 ms, I could not tell that the bulb was blinking .</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>HCDE 439 - Physical Computing | Example Student</p>
+    </footer>
   </body>
 </html>
+
