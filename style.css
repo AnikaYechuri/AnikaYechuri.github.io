@@ -71,3 +71,18 @@ h2 {
 .assignment p {
   margin-top: 0.5em;
 }
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Specific styles for images in a1.html */
+.a1-images img {
+  width: 100%;
+  max-width: 600px; /* Set a maximum width for images */
+  height: auto; /* Maintain the aspect ratio */
+  margin: 1em auto; /* Center the images with some spacing */
+  border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+  border-radius: 5px; /* Optional: Add rounded corners */
+}
