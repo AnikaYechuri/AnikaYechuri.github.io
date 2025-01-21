@@ -1,18 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
-
-    <title>Example Student's HCDE 439 Physical Computing Page!</title>
-
+    <title>Fade Assignment - HCDE 439</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>Example Student's Assignment 2!</h1>
-    <div class="header">
-      <img src="red-panda.jpg" />
-      <p>Here is all the documentation for assignment 2!</p>
-    </div>
+    <header>
+      <h1>Assignment 2 - Fade</h1>
+      <p>Welcome to my documentation for the Fade assignment!</p>
+    </header>
+
+    <main class="a2-images">
+      <!-- Section: Circuit GIF -->
+      <section id="circuit-demo">
+        <h2>Circuit Demonstration</h2>
+        <video controls autoplay loop muted>
+          <source src="fade_demo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <p>A demonstration of the Fade circuit in action.</p>
+      </section>
+
+      <!-- Section: Schematic -->
+      <section id="schematic">
+        <h2>Circuit Schematic</h2>
+        <img src="fade_schematic.jpg" alt="Circuit schematic diagram for Fade" />
+        <p>Caption: The schematic diagram illustrates the wiring and connections for the Fade circuit.</p>
+      </section>
+
+      <!-- Section: Circuit Diagram with Captions -->
+      <section id="circuit-diagram">
+        <h2>Circuit Diagram</h2>
+        <img src="fade_circuit.jpg" alt="Picture of the Fade circuit with labeled parts" />
+        <p>Caption: A labeled diagram of the circuit components used in the Fade project.</p>
+      </section>
+
+      <!-- Section: Resistor Calculations -->
+      <section id="calculations">
+        <h2>Resistor Calculations</h2>
+        <img src="fade_resistance_calc.jpg" alt="Picture of resistor calculations for LED" />
+        <p>Caption: Calculations to determine the appropriate resistor values for the LEDs in the Fade circuit.</p>
+      </section>
+
+      <!-- Section: Button Resistance -->
+      <section id="button-resistance">
+        <h2>Button Resistance Explanation</h2>
+        <p>A 10kΩ resistor is commonly used for pull-up buttons because it provides a stable and consistent signal (HIGH or LOW) while keeping power usage low. It prevents electrical noise, ensuring reliable readings, and minimizes the current when the button is pressed. This value works well for most digital circuits like Arduino inputs, balancing efficiency and signal stability.</p>
+      </section>
+
+      <!-- Section: Code Snippet -->
+      <section id="code-snippet">
+        <h2>Firmware Code</h2>
+        <pre><code>
+          // Variables for button state and fading LED
+int button = 2; // Button pin number
+bool mode = false; // Mode toggled by button press
+int prev = 0; // Previous button state
+int buttonVal = 0; // Current button state
+
+// Pin for the 1st LED
+int led1 = 13; // Pin number for LED1
+
+// Values for fading LED (LED2)
+int led2 = 9; // Pin number for LED2 (PWM pin)
+int fadeAmount = 5; // Increment/decrement step for fading
+int brightness = 0; // Current brightness of LED2
+
+// Pin for the 3rd LED
+int led3 = 7; // Pin number for LED3
+
+void setup() {
+  pinMode(led1, OUTPUT); // Set pin for LED1 as output
+  pinMode(led2, OUTPUT); // Set pin for LED2 as output
+  pinMode(led3, OUTPUT); // Set pin for LED3 as output
+  pinMode(button, INPUT); // Set pin for button as input
+}
+
+void loop() {
+  buttonVal = digitalRead(button); // Read the current state of the button
+
+  // Check if button is pressed and previous state was unpressed
+  if (buttonVal == 1 && prev == 0) {
+    mode = !mode; // Toggle the mode variable
+
+    // If mode is ON, fade LED2 up
+    if (mode) {
+      for (int i = 0; i < = 255; i = i + fadeAmount) {
+        analogWrite(led2, i); // Set brightness of LED2
+        delay(5); // Small delay for smooth fading
+      }
+    } 
+    // If mode is OFF, fade LED2 down
+    else {
+      for (int i = 255; i >= 0; i = i - fadeAmount) {
+        analogWrite(led2, i); // Set brightness of LED2
+        delay(5); // Small delay for smooth fading
+      }
+    }
+  }
+
+  // If mode is ON, blink LED1 and LED3
+  if (mode) {
+    digitalWrite(led1, HIGH); // Turn LED1 on
+    digitalWrite(led3, HIGH); // Turn LED3 on
+    delay(50); // Short delay
+    digitalWrite(led1, LOW); // Turn LED1 off
+    digitalWrite(led3, LOW); // Turn LED3 off
+    delay(50); // Short delay
+  }
+
+  prev = buttonVal; // Update the previous button state
+}
+
+        </code></pre>
+        <p>Caption: Firmware code for the Fade circuit, demonstrating the fading effect by incrementing and decrementing brightness in led2.</p>
+      </section>
+
+      <!-- Section: Additional Questions -->
+      <section id="additional-questions">
+        <h2>Additional Questions</h2>
+
+        <!-- Question 1 -->
+        <article id="question-1">
+          <h3>1. [Insert your first question here]</h3>
+          <p>[Insert your answer to the first question here]</p>
+        </article>
+
+        <!-- Question 2 -->
+        <article id="question-2">
+          <h3>2. [Insert your second question here]</h3>
+          <p>[Insert your answer to the second question here]</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 HCDE 439 - Physical Computing</p>
+    </footer>
   </body>
 </html>
+
