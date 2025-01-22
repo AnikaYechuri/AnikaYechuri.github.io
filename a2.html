@@ -41,7 +41,7 @@
       <section id="calculations">
         <h2>Resistor Calculations</h2>
         <img src="fade_resistance_calc.jpg" alt="Picture of resistor calculations for LED" />
-        <p>Caption: Calculations to determine the appropriate resistor values for the LEDs in the Fade circuit.</p>
+        <p>Caption: I ended up using a 220 ohm resistor becasue, in my calculation, the minimum resistance needed for this circuit is 160 ohms. I used 220 becasue I did not have a 160 ohm resistor and a higher resistor uses less power and is more energy efficient. </p>
       </section>
 
       <!-- Section: Button Resistance -->
@@ -124,13 +124,15 @@ void loop() {
 
         <!-- Question 1 -->
         <article id="question-1">
-          <h3>1. [Insert your first question here]</h3>
-          <p>[Insert your answer to the first question here]</p>
+          <h3>1.  Draw a chart where the X axis is time and the Y axis is voltage. Draw 3 lines representing the voltage across an LED with analogWrite(led, 64), analogWrite(led, 128), and analogWrite(led,255).</h3>
+          <img src="question1_fade.jpg" alt="Picture of different intervals using analogue write" />
+          <p>AnalogueWrite(led,255) means that the light is on 100% of the time and off 0% of the time in any given interval. AnalogueWrite(led,128) means that in a given period, the light is high for 50% of the time and off for 50%. Finally AnalogueWrite(led,64) means that the led is one for 25% of the time and off for 75% of the time.</p>
         </article>
 
         <!-- Question 2 -->
         <article id="question-2">
-          <h3>2. [Insert your second question here]</h3>
+          <img src="fade_q2.jpg" alt="Picture of calculations to find circuit runtime" />
+          <h3>2. I had 3 leds. the first and third LEDs were blinking and the second one was fading. The image above showed how I calculated the current for each blinking light and the fading light. I used the equation (runtime = battery capacity/total current drawn) and got a total runtime of 33.1 hours.</h3>
           <p>[Insert your answer to the second question here]</p>
         </article>
       </section>
