@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+    <title>Assignment 3: Input Output</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <h1>Assignment 3: Input Output</h1>
+      <p>Welcome to my documentation for the Input Output assignment!</p>
+    </header>
+
+    <main class="a3-images">
+      <!-- Section: Circuit Demo -->
+      <section id="circuit-demo">
+        <h2>Circuit Demo</h2>
+        <video controls autoplay loop muted>
+          <source src="input_output_demo.MOV" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <p>A demonstration of the Input Output circuit in action.</p>
+      </section>
+
+      <!-- Section: Circuit Picture -->
+      <section id="circuit-picture">
+        <h2>Circuit Picture</h2>
+        <img src="input_output_circuit.jpg" alt="Picture of the Input Output circuit with labeled parts" />
+        <p>Caption: A labeled picture of the Input Output circuit components used in this project.</p>
+      </section>
+
+      <!-- Section: Schematic -->
+      <section id="schematic">
+        <h2>Schematic</h2>
+        <img src="input_output_schematic.jpg" alt="Circuit schematic diagram for Input Output" />
+        <p>Caption: The schematic diagram illustrates the wiring and connections for the Input Output circuit.</p>
+      </section>
+
+      <!-- Section: Resistance Calculations -->
+      <section id="calculations">
+        <h2>Resistance Calculations</h2>
+        <img src="input_output_resistance_calc.jpg" alt="Picture of resistor calculations for the circuit" />
+        <p>Caption: In this section, the resistor values used are calculated for optimal performance in the circuit.</p>
+      </section>
+
+      <!-- Section: Firmware -->
+      <section id="firmware">
+        <h2>Firmware</h2>
+        <pre><code>
+            // Creating the servo object
+            #include <Servo.h>
+            
+            // Setting up pins
+            const int light_sensor = A0; // analog pin for reading the photoresistor
+            const int servo_pin = 11;    // PWM pin for the servo motor
+            
+            // Variables
+            int sensorVal = 0;           // Variable to store the reading from light sensor
+            const int threshold = 400;   // Light intensity threshold
+            
+            void setup() {
+              pinMode(servo_pin, OUTPUT);  // Set the servo pin as an output (PWM pin)
+              Serial.begin(9600);          // Begin serial communication for debugging
+            }
+            
+            void loop() {
+              // Read the photoresistor value
+              sensorVal = analogRead(light_sensor);
+              Serial.print("Sensor value: ");
+              Serial.println(sensorVal);
+            
+              // Map the light sensor value to the servo PWM range (0-255)
+              int pwmValue = map(sensorVal, 0, 400, 0, 255);
+            
+              // Use an if statement to control the servo based on the threshold
+              if (sensorVal > threshold) {
+                analogWrite(servo_pin, pwmValue);  // Send the mapped PWM signal to the servo
+                Serial.print("PWM value: "); //print statment to serial monitor
+                Serial.println(pwmValue); //print statment to serial monitor
+              } else {
+                analogWrite(servo_pin, 0);  // Set the servo to 0° using PWM (low signal)
+                Serial.println("PWM set to 0 due to low light.");  //print statment to serial monitor
+              }
+            
+              delay(100);  // Small delay for stable readings
+            }
+            
+        </code></pre>
+        <p>Caption: Firmware code for the Input Output circuit, demonstrating how the button interacts with the LED.</p>
+      </section>
+
+      <!-- Section: Additional Questions -->
+      <section id="additional-questions">
+        <h2>Additional Questions</h2>
+
+        <!-- Question 1 -->
+        <article id="question-1">
+          <h3>1. In your voltage divider, can the variable resistor be either R1 or R2 or does it need to be one or the other? Justify your answer with example calculations.</h3>
+          <p>In a voltage divider circuit, the variable resistor (the photoresistor in your case) can technically be either R1 or R2, but it’s typically chosen to be R1 because when the photoresistor is in the top part of the voltage divider (R1), the output voltage is directly proportional to the amount of light. This makes it easier to understand and control the circuit. For example, a higher light results in a higher output voltage.</p>
+        </article>
+
+        <!-- Question 2 -->
+        <article id="question-2">
+          <h3>2. Draw a graph where the x-axis is time and the y-axis is voltage. Plot the voltage at V-measure of your voltage divider of your shared gif.</h3>
+          <p>One possible modification is to add multiple buttons or sensors that interact with different outputs (LEDs, motors, etc.). By adjusting the code to handle these additional inputs, the system could create more complex behaviors, such as controlling multiple LEDs based on different button presses.</p>
+        </article>
+
+        <!-- Question 3 -->
+        <article id="question-3">
+            <h3>2. AnalogWrite and analogRead are respectively 8-bit and 10-bit values. Imagine you had 10-bit PWM and a 16-bit analog-to-digital converter instead. How would this change your map() code? Explain your answer.</h3>
+            <p>With 10-bit PWM and a 16-bit analog-to-digital converter , the map() function would need to scale values to match the new ranges. For example, to map a 10-bit ADC reading (0-1023) to a 16-bit PWM range (0-65535), the code would be: int pwmValue = map(sensorValue, 0, 1023, 0, 65535). The change would probably increase the overall precision of the readings. This would help control things like the brightness of an led.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+</html>
