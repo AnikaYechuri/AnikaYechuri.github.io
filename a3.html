@@ -41,7 +41,7 @@
       <section id="calculations">
         <h2>Resistance Calculations</h2>
         <img src="input_output_resistance_calc.jpg" alt="Picture of resistor calculations for the circuit" />
-        <p>Caption: At the voltage divider, we can read any voltage between 0-5 V since 5 is the max voltage we have for the arduino. The actual voltage is dependent on the the ratio between the 2 resistors. In my sample calculation I showed the voltage at the pin when the fixed resistor was 10k ohms and the photoresistor was 15 ohm resistor. At the pin the voltage would be 4.99V since the difference between the 2 resistors is so big.</p>
+        <p>Caption: At the voltage divider, we can read any voltage between 0-5 V since 5 is the max voltage we have for the arduino. The actual voltage is dependent on the the ratio between the 2 resistors. In my sample calculation I showed why a 10k resistor would be an appropriate measurement assuming that the resistance range for the photoresistor is between 1k-100k. When plugging in both the max and min resistance values into the voltage divider equation, I got the range of voltage readings to be between 0.45 and 4.5 V. Since this pretty much encompasses all the potential values R1 could be, using a 10k resistor would be a safe choice.</p>
       </section>
 
       <!-- Section: Firmware -->
@@ -97,14 +97,16 @@
         <!-- Question 1 -->
         <article id="question-1">
           <h3>1. In your voltage divider, can the variable resistor be either R1 or R2 or does it need to be one or the other? Justify your answer with example calculations.</h3>
-          <p>In a voltage divider circuit, the variable resistor (the photoresistor) can technically be either R1 or R2, but I typically chose it to be R1 because when the photoresistor is in the top part of the voltage divider (R1), the output voltage is directly proportional to the amount of light. This makes it easier to understand and control the circuit. For example, a higher light results in a higher output voltage.</p>
+          <img src="input_output_q1.jpg" alt="" />
+          <p>In a voltage divider circuit, the variable resistor (the photoresistor) can technically be either R1 or R2, but I chose it to be R1 because when the photoresistor is in the top part of the voltage divider (R1), the output voltage is directly proportional to the amount of light. This makes it easier to understand and control the circuit. For example, a higher light results in a higher output voltage. The readings at pin A0 would also change based on whether the photoresistor is using a higher or lower resistance than the fixed resistor. In my example calculation I used 1k ohms to be the resistance value of the photoresistor. This made it so that the A0 pin would read 4.5 volts if the circuit followed the first schematic and 0.45 volts if it followed the second one. </p>
         </article>
 
         <!-- Question 2 -->
         <article id="question-2">
           <h3>2. Draw a graph where the x-axis is time and the y-axis is voltage. Plot the voltage at V-measure of your voltage divider of your shared gif.</h3>
-          <img src="input_output_q2.jpeg" alt="" />
-          <p>Until the voltage divider, the Votage drop decreases at one rate but after the divider, the voltage drops at a way more rapid rate. The voltage divider read 2V.</p>
+          <img src="input_output_q2.jpg" alt="" />
+          <img src="input_output2_q2.jpg" alt="" />
+          <p>In my circuit demo video I show how the motor reacts to the photo resistor when it is covered vs uncovered. When the light is bright the resistance is low and the voltage is high but when the photoresistor is covered the resistance is high and the voltage is low. Looking at the serial monitor I found that the V-measure readings at A0 were roughly 115 when the light was dim and 605 when the light was bright. I divided both these values by 1023 to get the resistance for each case. Then I plugged the resistances into the V=IR equation to get a approximate voltage of 3.1V before the light is covered and 0.55V when the light is covered. That is what the graph above shows. I have also included my calculations above. Note - the graph shows the change in voltage when I covered the photoresistor one time. </p>
         </article>
 
         <!-- Question 3 -->
@@ -121,4 +123,3 @@
 </html>
 
 
-input_output_q2
