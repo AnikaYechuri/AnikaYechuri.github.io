@@ -20,21 +20,21 @@
           <source src="libraries_demo.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <p>A demonstration of the Libraries circuit in action.</p>
+        <p>This demo shows the remote sending signals to the IR reciever. When the on button is pressed and held the IR reciver reacts and the servo starts to move. When the button is not rpessed the servo turns off.</p>
       </section>
 
       <!-- Section: Circuit Picture -->
       <section id="circuit-picture">
         <h2>Circuit Picture</h2>
         <img src="libraries_circuit.jpg" alt="Picture of the Libraries circuit with labeled parts" />
-        <p>Caption: The servo motor connected to pin 9, demonstrating the use of the Servo library.</p>
+        <p>Caption: In this project I used 2 libraries, "<Servo.h>" and "<IRremote.h>". They work to connect the IR reciver signals to the Servo. </p>
       </section>
 
       <!-- Section: Schematic -->
       <section id="schematic">
         <h2>Schematic</h2>
         <img src="libraries_schematic.jpg" alt="Circuit schematic diagram for Libraries" />
-        <p>Caption: The schematic shows the servo motor connected to pin 9, with appropriate power and ground connections.</p>
+        <p>Caption: The schematic shows the servo motor connected to pin 9, with appropriate power and ground connections. It also shows the IR reciever connected to pin 7 as well as power and ground.</p>
       </section>
 
       <!-- Section: Code -->
@@ -85,7 +85,7 @@
                 }
                 
         </code></pre>
-        <p>Caption: Firmware code for the Libraries circuit, demonstrating the use of the Servo library to control the servo motor.</p>
+        <p>Caption: Firmware code for the Libraries circuit, demonstrating the use of the Servo library and IRremote Library to control the servo motor.</p>
       </section>
 
       <!-- Section: Questions -->
@@ -104,69 +104,21 @@
             Draw a graph with the X-axis in seconds, for two seconds, and the Y-axis the voltage at pin 9 with respect to ground.
           </h3>
           <img src="libraries_q1_graph.jpg" alt="Graph of voltage at pin 9 over time during servo sweep" />
-          <p>In this code, the servo motor is commanded to move from 0 to 179 degrees, with a 100ms delay between each increment. Over two seconds, the servo completes approximately 20 steps, resulting in a linear increase in position. The voltage at pin 9 remains constant at 5V during the entire operation, as the Servo library controls the servo using PWM signals, which are not directly measurable as a DC voltage at the control pin.</p>
+          <p>As time passes, more voltage is required for each successive cycle so the angle keeps increasing.I tried to show that in my graph by exaggerating the width of the high voltage sections. The low voltage is a constant 100ms while the periods of high voltage get larger and larger til the angle hits 180.  </p>
         </article>
 
         <!-- Question 2 -->
         <article id="question-2">
           <h3>2. Your input device is slightly broken, leading it to give us an erroneous reading 1% of the time. How can we address this? Answer in (pseudo)code.</h3>
           <img src="libraries_q2.jpg" alt="Example of input device with occasional erroneous readings" />
-          <p>To handle occasional erroneous readings from an input device, we can implement a simple validation check to discard outlier values. Here's an example in pseudo-code:</p>
-          <pre><code>
-            int readSensor() {
-              int sensorValue = analogRead(sensorPin);
-              if (sensorValue < MIN_VALID_VALUE || sensorValue > MAX_VALID_VALUE) {
-                return -1; // Indicate an invalid reading
-              }
-              return sensorValue;
-            }
-            
-            void loop() {
-              int value = readSensor();
-              if (value != -1) {
-                // Process the valid sensor value
-              } else {
-                // Handle the invalid reading (e.g., retry or use a default value)
-              }
-            }
-          </code></pre>
-          <p>In this approach, we define a range of valid sensor values. If a reading falls outside this range, it's considered erroneous and discarded. This method helps maintain the integrity of the data used in the application.</p>
+          <p>I would use multiple values to calculate the average so that even if the reading is off one percent of the time, it wont effecr the overall average too much.</p>
         </article>
 
         <!-- Question 3 -->
         <article id="question-3">
           <h3>3. Your input device is slightly noisy, leading the measurement to randomly deviate from the true measurement up or down by 10%. How can we address this? Answer in (pseudo)code.</h3>
           <img src="libraries_q3.jpg" alt="Example of noisy sensor readings with random deviations" />
-          <p>To mitigate random noise in sensor readings, we can implement a moving average filter to smooth the data. Here's an example in pseudo-code:</p>
-          <pre><code>
-            const int NUM_READINGS = 10;
-            int readings[NUM_READINGS];
-            int readIndex = 0;
-            int total = 0;
-            int average = 0;
-            
-            void setup() {
-              // Initialize all readings to 0
-              for (int i = 0; i < NUM_READINGS; i++) {
-                readings[i] = 0;
-              }
-            }
-            
-            int readSensor() {
-              total -= readings[readIndex];
-              readings[readIndex] = analogRead(sensorPin);
-              total += readings[readIndex];
-              readIndex = (readIndex + 1) % NUM_READINGS;
-              average = total / NUM_READINGS;
-              return average;
-            }
-            
-            void loop() {
-              int value = readSensor();
-              // Use the smoothed sensor value
-            }
-          </code></pre>
-          <p>This method maintains an array of the last N sensor readings and computes their average. By averaging multiple readings, random noise is reduced, resulting in a more stable and accurate measurement. The size of the window (NUM_READINGS) can be adjusted based on the desired level of smoothing.</p>
+          <p>I answered by saying that I would keep track of the average readings and asess each new reading to see if it is close enough to the average. I would set the upper and lower threshold as about 10% above and below the calculated average.</p>
         </article>
       </section>
     </main>
