@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+    <title>Assignment 5: High(er) Voltage and Transistors</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <h1>Assignment 5: High(er) Voltage and Transistors</h1>
+      <p>Welcome to my documentation for the High(er) Voltage and Transistors assignment!</p>
+    </header>
+
+    <main class="a5-images">
+      <!-- Section: Circuit Demo -->
+      <section id="circuit-demo">
+        <h2>Circuit Demo</h2>
+        <video controls autoplay loop muted>
+          <source src="higher_voltage_demo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <p>A demonstration of the High Voltage and Transistor circuit in action.</p>
+      </section>
+
+      <!-- Section: Circuit Picture -->
+      <section id="circuit-picture">
+        <h2>Circuit Picture</h2>
+        <img src="higher_voltage_circuit.jpg" alt="Picture of the High Voltage circuit with labeled parts" />
+        <p>Caption: A clear view of the circuit components, including the MOSFET, power supply, and load.</p>
+      </section>
+
+      <!-- Section: Resistance/Current Calculations -->
+      <section id="calculations">
+        <h2>Resistance/Current Calculations</h2>
+        <img src="higher_voltage_calculations.jpg" alt="Picture of resistance and current calculations for the circuit" />
+        <p>Caption: Justification of resistor values and expected current flow in the circuit. The MOSFET is rated for a maximum current of X A, while our load only requires Y A, ensuring safe operation.</p>
+      </section>
+
+      <!-- Section: Code -->
+      <section id="firmware">
+        <h2>Code</h2>
+        <pre><code>
+            #include <Arduino.h> // Standard Arduino library
+
+                int PIR_PIN = 5;       // Digital input pin for PIR sensor
+                int LED_PIN  = 3;        // PWM output pin for MOSFET gate
+                
+                void setup() {
+                  pinMode(PIR_PIN, INPUT);   // Sets PIR sensor as input
+                  pinMode(LED_PIN, OUTPUT);  // Sets MOSFET gate as output
+                  digitalWrite(LED_PIN, LOW); // Ensures MOSFET is off initially
+                }
+                
+                void loop() {
+                  int motionDetected = digitalRead(PIR_PIN); // Reads PIR sensor state
+                
+                  if (motionDetected) { 
+                    analogWrite(LED_PIN, 255); // Shows full brightness when motion detected
+                    delay(1000); // Keeps lights on for 5 seconds
+                 } else {
+                    analogWrite(LED_PIN, 0); // Turns off LED strip
+                    
+                  }
+                }
+        </code></pre>
+        <p>Caption: The led is set at low. 
+
+        The MOSFET used in this circuit can handle a maximum current of 30A, while the LED strip draws only about 2A (assuming 1A per meter for a 2-meter strip at 12V). Since 2A is much lower than the MOSFET’s limit, the transistor operates well within its safe range, preventing overheating or failure. This ensures reliable switching of the LED strip without exceeding the MOSFET’s current-handling capacity.
+        </p>
+      </section>
+
+      <!-- Section: Additional Questions -->
+      <section id="additional-questions">
+        <h2>Additional Questions</h2>
+
+        <!-- Question 1 -->
+        <article id="question-1">
+          <h3>1. Why is an external power supply necessary in this circuit?</h3>
+          <p>Using an external power supply ensures that the high-power load does not draw excessive current from the Arduino, which could damage it.</p>
+        </article>
+
+        <!-- Question 2 -->
+        <article id="question-2">
+          <h3>2. How does the MOSFET function as a switch in this circuit?</h3>
+          <p>The MOSFET acts as an electronic switch, allowing current to flow to the load when a voltage is applied to its gate, controlling high power devices with low-power signals.</p>
+        </article>
+
+        <!-- Question 3 -->
+        <article id="question-3">
+          <h3>3. What would happen if the gate resistor were removed?</h3>
+          <p>Without the gate resistor, excessive current could flow from the Arduino pin to the MOSFET, potentially damaging both components and causing unstable switching behavior.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+</html>
